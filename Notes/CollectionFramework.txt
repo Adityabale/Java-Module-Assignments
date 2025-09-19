@@ -1,0 +1,279 @@
+What is a collection object?
+It is an object which contains group of other objects of similar type.
+Or we can say it contains references to the set of similar type of objects.
+
+There are certain Collection classes and the group of these classes are collectively called Collection framework.
+
+Collection object is also known as container object.
+Collection class is also known as container class.
+
+Collection class works with objects only not with primitive type data.
+
+ArrayList is dynamic in nature. It's size will grow or shrink as per the number of objects added/removed.
+
+
+Queue => First In First Out (e.g. Movie Ticket Queue), add element, remove/delete element
+Stack => Last In First Out (e.g. stack of cd disk), push element (add), pop element(remove), top of stack
+
+In stack element is popped always from the top of the stack.
+
+In List only, elements are stored in ordered way but it is not guaranteed in Set or Map. So we can not retrieve added elements (objects) through index in Set or Map but we can retrieve elements based on index with any List. LinkedHashSet maintains the insertion order.
+
+
+maintaining insertion order => elements can be retrieved in the same order in which they were added.
+
+All collection classes are generic classes.
+
+
+int numarr[] = {5,10,15,20,25}
+
+String strarr[] = {"Ram", "Shyam", "Sita", "Geeta", "Mohan"};
+
+for(int elem : numarr)
+{
+	System.out.println(elem);
+}
+
+for(String elem : strarr)
+{
+	System.out.println(elem);
+}
+
+=================================================================
+interface MyInterface
+{
+}
+
+class First implements MyInterface
+{
+}
+
+First f1 = new First();
+
+f1 is an object First.
+f1 is an object of MyInterface.
+=================================================================
+
+interface MyInterface
+{
+}
+
+class Demo implements MyInterface
+{
+}
+
+MyInterface mif = new Demo();	//OK
+
+-------------------------------------------------------
+
+class MyClass
+{
+}
+
+class Demo extends MyClass
+{
+}
+
+MyClass mcls = new Demo();	//OK
+
+
+=================================================================
+
+class ArrayList implements List
+{
+}
+
+List list1 = new ArrayList();	//OK
+
+
+=================================================================
+Iterations:
+Using for each
+Using Iterator
+Using ListIterator
+Using Enumeration
+=================================================================
+Methods:
+
+Collection methods:
+add()
+addAll()
+contains()
+containsAll()
+remove()
+removeAll()
+size()
+toArray()
+retainAll()
+
+List specific methods:
+get(index)
+set(index,element)
+subList(start index, end index)
+
+
+=================================================================
+
+Welcome
+
+come
+
+
+e1 e2 e3 e4 e5
+
+
+e3 e4 e5
+
+
+String str1 = "Welcome"
+
+String str2 = new String("Welcome");
+
+String str3 = "Welcome"
+
+String str4 = new String("Welcome");
+
+Local variables are stored in stack.
+Whatever we create with new, that all goes to heap.
+
+=================================================================
+
+
+ob1, ob2 => Student
+
+ob1.equals(ob2);
+
+boolean equals(Object ob)	//Object ob = ob2; Object = Student   Parent = Child (Upcasting/Widening Conversion)
+
+Student s = ob;			//Student = Object	Child = (Child) Parent (Downcasting/Narrowing Conversion)
+this => ob1	=> Student class object
+
+=================================================================
+
+Collection => interface
+Collections => class (it is an utility class which contains only static methods) e.g. Collections.sort();
+Collections.sort() works for List container(ArrayList, LinkedList) only and not for set, queue and map.
+Collections.sort(list1);	//It will sort the list1 elements.
+
+=================================================================
+
+
+2 8 5
+
+compareTo()
+first == second ; return 0;
+first < second ; return -1;
+first > second; return 1;
+
+ob1.compareTo(ob2)
+
+ob1 == ob2 	return 0;
+ob1 < ob2	return -1;
+ob1 > ob2	return 1;
+
+
+=================================================================
+Difference between set and list
+1. List allows duplicate but set does not allow duplicate.
+2. There can be maximum one null reference/value in set but list can have multiple (zero or more) null references.
+3. In list order is maintained but in set it is not guaranteed that order will be maintained.
+=================================================================
+
+HashSet	: Does not maintain the insertion order.
+LinkedHashSet : Maintains the insertion order.
+TreeSet: Stores elements in sorted order.
+new Student(1,75,23)
+
+Map
+
+Map is actually key-value pair. Value is here any object/element.
+Map does not implement Iterable, so we can not use for-each and Iterator for iterating the map.
+i.e. for-each and Iterator both are used with Collection classes.
+
+Set internally uses hash map.
+
+
+aadhar no., person
+mobile no., person
+vehicle no, vehicle
+roll no, Student
+
+Map <Student> map1 = new HashMap <Student>();
+
+Student s1 = new Student(1,75,23);
+map1.put(1, s1);		// Key => 1 , value => s1
+
+OR;
+
+map1.put(1, new Student(1,75,23));
+
+Key must be unique, value can be duplicate.
+
+=================================================================
+
+interface Map
+{
+	interface Entry
+	{
+	}
+}
+
+Linked [List/HashSet/HashMap] => maintains insertion order
+Tree [Set/Map] => Stores objects in sorted order.
+
+=================================================================
+
+Synchronized : At a time only one thread will access the resource (Set, List, Map)
+Non-synchronized : At a time many threads can access the resource simultaneously.
+
+=====================================================================
+
+List <String> list1 = new ArrayList<String> ();	//At present list1 is not synchronized.
+Collections.synchronizedList(list1);	//list1 now will be synchronized.
+
+Map <Integer,String> map1  = new HashMap <Integer,String>();	//At present map1 is not synchronized.
+Collections.synchronizedMap(map1);	//map1 now is synchronized.
+
+Set <String> set1 = new HashSet<String> ();	//At present set1 is not synchronized.
+Collections.synchronizedSet(set1);	//set1 now will be synchronized.
+
+=======================================================================
+
+Difference between Vector and ArrayList
+Vector is also a dynamic array but it is Synchronized.
+ArrayList is not synchronized.
+
+=======================================================================
+Difference between Hashtable and HashMap
+Hashtable is similar to HashMap but it is Synchronized.
+HashMap is not synchronized.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

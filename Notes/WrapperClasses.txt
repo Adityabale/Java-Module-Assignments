@@ -1,0 +1,184 @@
+Wrapper classes are used to convert primitive type data into object.
+
+Different primitive types (8 types)
+byte
+short
+int
+long
+float
+double
+char
+boolean
+
+There are certain classes/framework (Generics/Collection framework) where work is done only with the object and not with the primitive type directly.
+
+In java there are certain classes which are used to wrap the primitive data into an object. These classes are known as wrapper classes.
+
+We should use wrapper classes object when it becomes mandatory to work upon object instead of primitive type.
+
+==============================================================================================
+
+Eight wrapper classes for eight primitive types.
+Byte  
+Short
+Integer
+Long
+Float
+Double
+Character
+Boolean
+
+These all six numeric wrapper classes are child of Number abstract class i.e. Number is the parent class for all the child class.
+
+Abstract methods of Number class:
+byte byteValue() : Returns the value as byte
+float floatValue() : Returns the value as float
+double doubleValue() : Returns the value as double
+int intValue() : Returns the value as int
+short shortValue() : Returns the value as short
+long longValue() : Returns the value as long
+
+dxz
+String data = "43.5";
+double res = data * 2;		//Error as data is not numeric it is String
+
+double d1 = Double.parseDouble(data);		// d1 = 43.5
+double res = d1 * 2;		//OK, as d1 is numeric type double
+
+String data1 = "125";
+int res = data1 * 2;		//Error as data1 is not numeric. it is string.
+
+int d2 = Integer.parseInt(data1);
+int res = d2 * 2;		//OK
+
+
+String => Wrapper			[e.g. new Double("23.5"), Double.valueOf("23.5") ]
+String => Primitive			[e.g. Integer.parseInt(), Double.parseDouble()]
+Wrapper/Primitive => String		[ String.valueOf() ]
+
+primitive => wrapper			[e.g. new Double(23.5) ]
+wrapper => primitive			[e.g. dobj.doubleValue() ]
+==============================================================================================
+compareTo() method : To compare two primitive objects
+
+
+
+compareTo() returns 0 if both wrapper objects having same value otherwise returns non-zero value.
+
+==============================================================================================
+
+Boolean blObj1 = new Boolean(true);
+Boolean blObj1 = new Boolean("true");
+zf/.';l,mjhzaX
+blObj1.toString()	//will return "true" as String
+==============================================================================================
+
+Character chObj1 = new Character('A');				
+
+chObj1.isUpperCase();	//Return TRUE
+
+'A' 	=> character literal
+"A"	=> String literal
+
+'AB'	//wrong
+"AB"	//OK
+
+==============================================================================================
+
+Boxing and Unboxing
+
+Integer iob1 = new Integer(35);			//Primitive to Wrapper object, Boxing
+
+int data1 = iob1.intValue();			//Wrapper object to primitive, Unboxing
+
+
+
+-----------------------------------------------------------------------------
+Integer iob2 = new Integer(100);			//wrap/box/encapsulate into an object, Boxing
+
+OR;
+
+Integer iob2 = 100;				//Autoboxing
+
+
+-----------------------------------------------------------------------------
+
+int data2 = iob2.intValue();			//fetch/extract/unbox data,  Unboxing
+
+OR;
+
+int data2 = iob2;				//Auto-unboxing
+
+-----------------------------------------------------------------------------
+
+class BoxingDemo {
+
+	static int fun(Integer v) {
+		return v;
+	}
+
+	public static void main(String args[ ]) {
+		Integer iob = fun(100);			//Integer iob = 100
+		System.out.println(iob);
+	} 
+}
+
+Integer v = 100;				//Autoboxing
+
+Integer = int			//Boxing
+int = Integer			//Unboxing
+
+
+Integer iob1 = 35;
+int a = 50;
+
+int res = iob1 + a;		//int = Integer + int, OK
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,388 @@
+javadoc
+--------
+javadoc -d <destination folder path> <source file path>
+javadoc -d ./MyFirstProgDoc/ ./MyFirstProgram.java
+
+javap
+------
+javap - also known as the Java Disassembler
+javap MyFirstProg
+javap -c MyFirstProg
+javap -verbose MyFirstProg
+
+javah
+------
+JNI - Java Native Interface to interact with native codes written in C/C++.
+Generates JNI headers from a Java class.
+When this task executes, it will generate the C header and source files that are needed to implement native methods.
+ex: javah MyFirstProgram (will generate a file MyFirstProgram.h)
+
+class Demo
+{
+	psvm()
+	{
+		int x;
+		x = 5;
+		
+		{
+			int y;
+			y = 10;
+		}
+		sop(x);
+		sop(y);			//Error, because we are trying to access y outside its scope.
+	}
+}
+
+We can not access any variable outside its scope.
+
+How to identify scope of a variable?
+We will see the opening and closing bracket for that variable.
+
+
+
+class Demo
+{
+	psvm()
+	{
+		int x;
+		x = 5;
+		
+		{
+			int y;
+			y = 10;
+			sop(x);		//Ok, will work.
+		}
+		sop(x);
+		sop(y);			//Error, because we are trying to access y outside its scope.
+	}
+}
+
+
+
+class Demo
+{
+	psvm()
+	{
+		int x;
+		x = 5;
+		
+		{
+			int x = 10;		//Error
+		}
+		sop(x);
+		
+	}
+}
+
+We can not declare variables with same name in the same scope.
+
+int x = 10;
+char ch = 'j';
+String str = "Hello";
+
+
+
+Type conversion and Typecasting
+=====================================
+
+int a = 10;
+double b = 25.3;
+
+a = b;
+
+b = a;
+
+numeric data type -> byte, short, int, long, float, double
+char -> Integer type data (assignment possible)
+
+widening conversion => 
+narrowing conversion
+
+byte b = 10;
+int a;
+
+a = b;
+
+long x = 145;
+int y = 20;
+
+x = y;	//widening, Ok - no issue
+y = x;	//narrowing, compiler will warn for lossy conversion. we will have to typecast.
+
+y = (int)x;
+
+
+Typecast the right side according to the data type of the left side.
+
+char ch = 'a';
+int x = ch;
+
+
+binary of 130
+
+byte b = 130;
+ 
+10000010	(-126) 
+
+2's complement
+01111110	(126)
+
+
+================================================================
+
+Type promotion
+
+int a = 5;
+double b = 3.5;
+float c = 5.6f;
+
+int res = a * b;
+
+int = int * double
+
+int = double
+
+
+======================================================================
+
+Control Statements
+
+if(condition)
+{
+	//code
+}
+else
+{
+	//code
+}
+
+
+if(condition)
+{
+	//code
+}
+else if(condition)
+{
+	//code
+}
+else if(condition)
+{
+	//code
+}
+else
+{
+	//code
+}
+
+
+
+Loop
+initialization
+condition
+increment/decrement
+
+//initilization
+while(condition)
+{
+	//increment/decrement loop counter
+	//code
+}
+
+//initilization
+do
+{
+	//increment/decrement loop counter
+	//code
+}while(condition);
+
+for(initialization; condition; increment/decrement loop counter)
+{
+	//code
+}
+
+
+i = 1;
+j = 10;
+
+while (++i < --j);
+
+sop (i);
+sop (j);
+
+===========================================================
+
+place1:
+-----
+-----
+
+place2:
+-----
+-----
+
+goto place1;  // goto removed in java
+
+=====================================================
+
+class BreakDemo
+{
+	public static void main()
+	{
+		int x = 15;
+		
+		block1:{
+			System.out.println("Within block1");
+			block2: {
+				if(x > 10)
+				{
+					break block1;
+				}
+			}
+			System.out.println("Block1 execution completed");
+		}
+		System.out.println("Out of block1");
+	}
+}
+
+================================================================
+
+5 10 15 20 ............ 500
+
+int x;
+int y;
+int z;
+
+x = 5;
+y = 10;
+z = 15;
+
+int myarr[] = {5,10,15,20,25};
+
+sop(myarr[2]); //print 15
+
+myarr[2] = 45;
+
+
+int size = 4;
+
+int anotherArray[] = new int[size];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

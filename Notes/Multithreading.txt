@@ -1,0 +1,241 @@
+Multithreading
+=======================
+
+When we talk about multithreading, we should always think in context of a single program.
+A single program can have multiple threads, which can run simultaneously/parallely (concurrently).
+
+Multi processing => mulitiple programs => multi tasking
+multi threading => single program
+
+Creating a thread
+
+Using Thread class
+Using Runnable interface
+
+When our program starts control goes to first in main() method.
+Similarly when any thread starts control goes to first in respectiver run() method.
+
+Each thread in java is also an object.
+As each thread itself is an object so these objects belongs to some class which are called thread classes.
+
+Using Thread class
+===================
+
+run() : It is necessary to write run method inside our thread class.
+start() : It is a Thread class method which is used to start thread which will take the control inside respective run method.
+getName(): It returns the name of the current thread.
+setName(threadName) : It sets the name of a thread.
+sleep();			//static method of Thread class used by current thread. Thread.sleep();
+
+join(); 
+
+============================================================================
+
+statement inside thread1 => thread2.join();
+
+main
+thread1
+ 
+
+main start
+thread1 start
+thread1 end
+
+//thread1.join();		//main is saying: "I will wait for thread1 to completed its task. When thread1 is done with its task and it will join me then only I will proceed further".
+
+main end
+
+============================================================================
+
+Thread can be given a name.
+A Thread class can have only one run() method.
+
+
+class Thread				//This implementation is just an assumption.
+{
+	private String name;
+	
+	Thread(String name)
+	{
+		this.name = name;
+	}
+	
+	public String getName()
+	{
+		return this.name;
+	}
+}
+
+class MyThread extends Thread
+{
+	int val;
+	
+	MyThread(String tname)
+	{
+		super(tname);
+	}
+	
+	void run()
+	{
+		sop(getName());
+		//sop(name);		//Error as name is private in parent class.
+	}
+	
+}
+
+
+=====================================================================
+
+main() method itself treated as a thread also known as Main thread.
+Main thread might terminate first before the child threads completion created inside main thread.
+
+Two ways to set the thread name:
+super(threadName)
+setName(threadName)
+
+thread1.start();
+thread2.start();
+
+It is not mandatory that in multithreading environment, thread should end/complete in the same order of their start. 
+
+=====================================================================
+
+Using Runnable Interface
+
+
+=====================================================================
+
+Synchronization
+
+At a time only one thread can access any resource.
+
+acquiring lock or monitor or semaphore on a resource/object.
+
+
+class StringPrinter
+{
+	void printString(String str)
+	{
+		System.out.println(str);
+	}
+}
+
+class MyThread implements Runnable
+{
+	Thread t;
+	
+	StringPrinter sp;
+	String strToPrint;
+	
+	MyThread(String tname)
+	{
+		t = new Thread(this,tname);
+		t.start();
+	}
+	
+	public void run()
+	{
+	}
+}
+
+=============================================
+
+Two way of synchronization
+
+1. Synchronized Method
+2. Synchronized block/statement
+
+
+=============================================
+
+producer consumer problem
+
+producer => produce  
+consumer => consume
+
+produce => 5
+consumer => 2
+
+
+=============================================
+
+If a thread enters/uses synchronized method/block/statament means a thread acquired lock over a resource, in that case no other thread will be allowed to acces any synchronized method/block/statement on the same object. However other thread can access any non-synchronized method at the same time.
+
+=============================================
+
+At a time, through one object/resource only one thread can access any synchronized method/block/statement.
+
+=============================================
+
+enters the monitor <=> acquires the lock over object/resource
+
+
+=============================================
+Thread.currentThread() => Returns current thread reference.
+setPriority(Thread.NORM_PRIORITY) => Method to set the thread priority.
+
+Thread mainThread = Thread.currentThread();
+mainThread.setPriority(Thread.NORM_PRIORITY);		//mth1.t.setPriority(Thread.NORM_PRIORITY);
+//mainThread.setName("Main Thread");
+System.out.println("Running " + mainThread.getName());
+MyThread t1 = new MyThread("Thread1");
+MyThread t2= new MyThread("Thread2");
+//t1.t.setPriority(Thread.NORM_PRIORITY-2);
+//t2.t.setPriority(Thread.NORM_PRIORITY+2);
+
+Thread th = Thread.currentThread();
+sop(th.getName());
+
+=============================================
+
+ThreadGroup tgroup = new ThreadGroup("Group A");
+MyThread t1 = new MyThread(tgroup,"Thread1");
+MyThread t2 = new MyThread(tgroup,"Thread2");
+MyThread t3 = new MyThread(tgroup,"Thread3");
+
+=============================================
+
+
+wait()
+notify()
+notifyAll()
+
+All these three methods which are declared final are of the Object class and not of the Thread class.
+
+=============================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

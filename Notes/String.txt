@@ -1,0 +1,224 @@
+String str1 = "Welcome"				//String constant pool
+String str2 = new String ("Welcome");		//Heap area
+
+String str3 = "Welcome"				//String constant pool
+String str4 = new String("Welcome");		//Heap area
+
+str1 == str3 		//TRUE
+str1 == str2		//FALSE
+str2 == str4		//FALSE
+
+
+In the constant pool, jvm first will check the availability of the String constant literal and if it is already there then it will just return the reference of the same. 
+Otherwise it allocate memory for the new String literal which already does not exist in the constant pool.
+
+
+But when we use 'new' keyword to allocate memory for the string, every time a new memory location is allocated, it does not matter whether that string already exist in the heap or not.
+
+===============================================================================
+
+String objects are immutable means we can not change the content of String object once initialized.
+
+String str = "Hello Friends";			//Immutable
+//String str = new String ("Hello Friends");	//Immutable
+
+String str1 = str.concat(" Welcome");	//Will create a new String "Hello Friends Welcome" and old String 
+					//"Hello Friends" will still be there.
+str = str.concat(" Welcome");
+
+System.out.println(str) ; 	//Hello Friends
+System.out.println(str1) ;	//Hello Friends Welcome 
+
+===============================================================================
+
+String str = "Welcome";
+
+char ch = str.charAt(2);		//Return l
+char ch = str.charAt(6);		//Return e
+
+==============================================================================
+
+String class has overridden the equals() method of the Object class and does deep comparision, means it compares two String objects using contents and not 
+compares the references.		
+
+
+String str1 = "Welcome"				//String constant pool
+String str2 = new String ("Welcome");		//Heap area
+
+String str3 = "Welcome"				//String constant pool
+String str4 = new String("Welcome");		//Heap area
+
+String str5 = "Hello";
+
+str1.equals(str3) 		//TRUE
+str1.equals(str2)		//TRUE, does not compare references, instead it compares the string content of both the object.
+str2.equals(str4)		//TRUE
+
+str1.equals(str5)		//FALSE
+str2.equals(str5)		//FALSE
+
+==============================================================================
+
+String str1 = "HELLO";
+String str2 = "Hello";
+String str3 = "hello";
+
+str1.equals(str2);		//FALSE
+str1.equalsIgnoreCase(str2);	//TRUE
+
+==============================================================================
+
+String str1 = "Welcome";
+char charr[] = str1.toCharArray();
+
+for(int i = 0; i < charr.length; i++)
+{
+	System.out.println(charr[i]);
+	char[i] = 'a';
+}
+
+System.out.println(str1);	//Welcome
+
+==============================================================================
+
+
+String str1 = "abacc";
+String str2 = "abdacc";
+
+str1.compareTo(str2);		//will return -3 i.e. non-zero value
+
+If compareTo() is returning non-zero value, means string objects are not equal.
+returns zero, means both the string are same otherwise returns the difference of the ascii value of the characters at the position on which mismatch occured.
+
+==============================================================================
+
+String str1 = "jiya joy";
+String str2 = str1.replace('j','t');			//tiya toy, str1 will not change because String is immutable
+System.out.println(str2);
+
+OR;
+//str1.replace('j','t');
+"jiya joy".replace('j','t');
+
+==============================================================================
+
+
+String str1 = "Hello Friends";
+
+int i = str1.indexOf('l');		//returns 2
+sop(i);					//2
+
+str1.indexOf('l',i+1);
+
+str1.indexOf("end");			//returns 9
+
+str1.lasIndexOf('e');			//returns 9
+
+==============================================================================
+String str1 = "Hello Friends";
+
+str1.contains("Hello");		//returns TRUE
+str1.contains("Welcome");	//returns FALSE
+
+==============================================================================
+
+
+
+String str1 = "Hello";
+String str2 = "";		//empty string
+String str3 = "      "		//empty string
+
+str1.isEmpty();			//FALSE
+str2.isEmpty();			//TRUE
+str3.isEmpty();			//TRUE
+
+
+==============================================================================
+String str1 = String.join("-", "This", "is", "a", "string");			//Returns This-is-a-string.
+sop(str1);			//This-is-a-string
+
+==============================================================================
+String str1 = "30/08/2020"
+String str2 = "Hello/Friends/How/Are/You";
+
+String strArr[] = str1.split("/");		//returns array of String
+
+for(String s: strArr)
+{
+	System.out.println(s);
+}
+==============================================================================
+StringBuffer class is used to create mutable String object.
+
+StringBuffer str1 = new StringBuffer("Welcome");
+StringBuffer str1 = "Welcome";		//Error, can not convert/assign String to StringBuffer.
+String str2 = new String("Welcome");
+
+str1.append(" Friends");
+String str3 = str2.concat(" Friends");
+
+System.out.println(str1);	//Welcome Friends
+System.out.println(str2);	//Welcome
+
+
+StringBuffer str4 = new StringBuffer();	//default capacity is to store 16 characters, when we add 17th character capacity will be increased by 						// current capacity * 2 + 2 i.e. now new capacity will become to store 34 characters.
+str4.capacity();				//16
+
+StringBuffer str4 = new StringBuffer("Hello");	//initial capacity : 16  + 5  = 21 characters
+str4.capacity();					//21
+
+==============================================================================
+StringBuffer does not override equal() method of the Object class.
+
+StringBuffer str1 = new StringBuffer("Welcome");
+StringBuffer str2 = new StringBuffer("Welcome");
+
+str1.equals(str2)			//FALSE, because it compares references and not the internal contents.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

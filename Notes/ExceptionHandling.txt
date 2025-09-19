@@ -1,0 +1,1242 @@
+Exception is an unwanted/unexpected event that causes our program to terminate in the mid of its execution.
+
+class ExceptionDemo
+{
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 5;			//See the value of b
+		int res = a/b;
+		System.out.println("Sum : " + res);
+		System.out.println("Program terminated successfully");
+	}
+}
+
+Output:
+Program started its execution
+Result : 1
+Program terminated successfully
+
+
+================================================================================
+
+class ExceptionDemo
+{
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 0;		//See the value of b
+		int res = a/b;		//This statement will generate exception during execution.
+		System.out.println("Result : " + res);
+		System.out.println("Program terminated successfully");
+	}
+}
+
+OUTPUT:
+
+Program started its execution
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at ExceptionDemo.main(ExceptionDemo.java:8)
+	
+================================================================================
+class ExceptionDemo
+{
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+
+		int arr[] = {5,10,15,20,25};
+
+		for(int i = 0; i < 6 ; i++)
+		{
+			System.out.println(arr[i]);
+		}
+
+		System.out.println("Program terminated successfully");
+	}
+}
+
+OUTPUT:
+Program started its execution
+5
+10
+15
+20
+25
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 5
+	at ExceptionDemo.main(ExceptionDemo1.java:11)
+
+================================================================================
+Syntactical error is never called an exception. (caught by compiler)
+Exception are basically logical error.
+================================================================================
+
+We should take care of the possible exception which might be generated and handle it in advance so that our program should not terminate in the mid of its execution.
+
+keywords used in exception handling:
+
+try
+catch
+throw
+throws
+finally	
+================================================================================
+try - It is a block
+catch - It is a block (also known as exception handler)
+
+Syntax:
+--------------------------------------------------------------------
+try
+{
+	//Code which might generate some exception at run time.
+}
+catch(ExceptionType)
+{
+	//handler
+}
+
+--------------------------------------------------------------------
+A single try block can have multiple catch block (exception handler)
+try
+{
+	//Code which might generate some exception at run time.
+}
+catch(ExceptionType1)
+{
+	//handler
+}
+catch(ExceptionType2)
+{
+	//handler
+}
+================================================================================
+Each and every exception in java is an object which belongs to some class.
+eg. ArithmeticException, ArrayIndexOutOfBoundsException etc.
+================================================================================
+
+class ExceptionHandlingDemo
+{
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 0;
+
+		try
+		{
+			int res = a/b;
+			System.out.println("Result : " + res);
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("Exception caught and handled");
+		}
+
+		System.out.println("Program terminated successfully");
+	}
+}
+
+OUTPUT:
+
+Program started its execution
+Exception caught and handled
+Program terminated successfully
+------------------------------------------------------------------------------
+
+In try block if any exception is generated at any particular point then control goes to the respective catch block and after the execution catch block control never returns back to the try block to that particular i.e. the code written in try block there after that point will never be executed in the case of exception.
+================================================================================
+class ExceptionHandlingDemo
+{
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 5;		//Only change is setting value of b to 5
+
+		try
+		{
+			int res = a/b;
+			System.out.println("Result : " + res);
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("Exception caught and handled");
+		}
+		System.out.println("Program terminated successfully");
+	}
+}
+
+OUTPUT:
+
+Program started its execution
+Result : 1
+Program terminated successfully
+================================================================================
+
+
+class ExceptionHandlingDemo1
+{
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 5;		//Only change is setting value of b to 5
+
+		int arr[] = {5,10,15,20,25};
+
+		try
+		{
+			int res = a/b;			//might generate ArithmeticException
+			System.out.println("Result : " + res);
+
+			System.out.println("Array elements: ");
+			for(int i = 0; i < 6; i++)
+			{
+				System.out.print(arr[i]+"  ");	//might generate ArrayIndexOutOfBoundsException
+			}
+			System.out.println();
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("Exception caught and handled");
+		}
+		System.out.println("Program terminated successfully");
+	}
+}
+
+
+NOTE: ArrayIndexOutOfBoundsException not handled.
+
+OUTPUT:
+Program started its execution
+Result : 1
+Array elements: 
+5  10  15  20  25  Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 5
+	at ExceptionHandlingDemo1.main(ExceptionHandlingDemo1.java:19)
+
+
+==========================================================================
+
+class ExceptionHandlingDemo2
+{
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 5;		//Only change is setting value of b to 5
+
+		int arr[] = {5,10,15,20,25};
+
+		try
+		{
+			int res = a/b;			//might generate ArithmeticException
+			System.out.println("Result : " + res);
+
+			System.out.println("Array elements: ");
+			for(int i = 0; i < 6; i++)
+			{
+				System.out.print(arr[i]+"  ");	//might generate ArrayIndexOutOfBoundsException
+			}
+			System.out.println();
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("Exception caught: arithmetic exception handled");
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Exception caught: array index out of bounds exception handled");
+		}
+		System.out.println("Program terminated successfully");
+	}
+}
+
+NOTE: ArrayIndexOutOfBoundsException is handled.
+
+OUTPUT:
+
+Program started its execution
+Result : 1
+Array elements: 
+5  10  15  20  25  Exception caught: array index out of bounds exception handled
+Program terminated successfully
+
+===========================================================================================
+
+A try block can have multiple catch blocks.
+When any exception is generated inside try block, then exception is handled by only one catch block. Other catch blocks will be skipped and will not be executed.
+
+
+class ExceptionHandlingDemo2
+{
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 0;		//Only change is setting value of b to 5
+
+		int arr[] = {5,10,15,20,25};
+
+		try
+		{
+			int res = a/b;			//might generate ArithmeticException
+			System.out.println("Result : " + res);
+
+			System.out.println("Array elements: ");
+			for(int i = 0; i < 6; i++)
+			{
+				System.out.print(arr[i]+"  ");	//might generate ArrayIndexOutOfBoundsException
+			}
+			System.out.println();
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("Exception caught: arithmetic exception handled");
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Exception caught: array index out of bounds exception handled");
+		}
+		System.out.println("Program terminated successfully");
+	}
+}
+
+
+
+OUTPUT:
+Program started its execution
+Exception caught: arithmetic exception handled
+Program terminated successfully
+
+===========================================================================================
+We can leave catch block empty.
+
+try
+{
+	int res = a/b;
+}
+catch(ArithmeticException ae)
+{
+	
+}
+===========================================================================================
+class ExceptionHandlingDemo2
+{
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 0;		//Only change is setting value of b to 5
+
+		int arr[] = {5,10,15,20,25};
+		try
+		{
+			int res = a/b;			//might generate ArithmeticException
+			System.out.println("Result : " + res);
+
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("Exception caught: arithmetic exception handled");
+		}
+
+
+		try
+		{
+			System.out.println("Array elements: ");
+			for(int i = 0; i < 5; i++)
+			{
+				System.out.print(arr[i]+"  ");	//might generate ArrayIndexOutOfBoundsException
+			}
+			System.out.println();
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Exception caught: array index out of bounds exception handled");
+		}
+		
+		System.out.println("Program terminated successfully");
+	}
+}
+
+==========================================================================================
+getMessage() and printStackTrace()
+These two methods are used with the Exception object to get the exception details.
+
+==========================================================================================
+class ExceptionHandlingDemo3
+{
+	static int doArithmeticOp(int a, int b)
+	{
+		int res = doDivision(a,b);
+		return res;
+	}
+
+	static int doDivision(int a, int b)
+	{
+		return a/b;
+	}
+
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 0;		//Only change is setting value of b to 5
+
+		int arr[] = {5,10,15,20,25};
+
+		try
+		{
+			int res = doArithmeticOp(a,b);			//might generate ArithmeticException
+			System.out.println("Result : " + res);
+
+			System.out.println("Array elements: ");
+			for(int i = 0; i < 5; i++)
+			{
+				System.out.print(arr[i]+"  ");	//might generate ArrayIndexOutOfBoundsException
+			}
+			System.out.println();
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("Exception caught: arithmetic exception handled");
+			ae.printStackTrace();
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Exception caught: array index out of bounds exception handled");
+			e.printStackTrace();
+		}
+		System.out.println("Program terminated successfully");
+	}
+}
+
+NOTE: Use of printStackTrace();
+OUTPUT:
+
+Program started its execution
+Exception caught: arithmetic exception handled
+java.lang.ArithmeticException: / by zero
+	at ExceptionHandlingDemo3.doDivision(ExceptionHandlingDemo3.java:11)
+	at ExceptionHandlingDemo3.doArithmeticOp(ExceptionHandlingDemo3.java:5)
+	at ExceptionHandlingDemo3.main(ExceptionHandlingDemo3.java:24)
+Program terminated successfully
+
+======================================================================================
+
+class ExceptionHandlingDemo3
+{
+	static int doArithmeticOp(int a, int b)
+	{
+		int res = doDivision(a,b);
+		return res;
+	}
+
+	static int doDivision(int a, int b)
+	{
+		return a/b;
+	}
+
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 0;		//Only change is setting value of b to 5
+
+		int arr[] = {5,10,15,20,25};
+
+		try
+		{
+			int res = doArithmeticOp(a,b);			//might generate ArithmeticException
+			System.out.println("Result : " + res);
+
+			System.out.println("Array elements: ");
+			for(int i = 0; i < 5; i++)
+			{
+				System.out.print(arr[i]+"  ");	//might generate ArrayIndexOutOfBoundsException
+			}
+			System.out.println();
+		}
+		catch(ArithmeticException ae)
+		{
+			System.out.println("Exception caught: arithmetic exception handled");
+			System.out.println(ae.getMessage());
+		}
+		catch(ArrayIndexOutOfBoundsException e)
+		{
+			System.out.println("Exception caught: array index out of bounds exception handled");
+			e.printStackTrace();
+		}
+		System.out.println("Program terminated successfully");
+	}
+}
+
+NOTE: Use of getMessage();
+
+OUTPUT:
+Program started its execution
+Exception caught: arithmetic exception handled
+/ by zero
+Program terminated successfully
+
+======================================================================================
+
+finally block
+
+Whether any exception is generated or not, finally block will execute everytime.
+This block is guaranteed to be executed independent of exception is generated or not.
+Mostly if we open/occupy any resource in the try block then we close/free that resource in finally block.
+A try block can have only one finally block and multiple catch blocks (handlers).
+
+try
+{
+	//open db connection
+	//exception generated here due to some logical error
+}
+catch()
+{
+}
+catch()
+{
+}
+finally
+{
+	//it is guaranteed to be executed whether any exception is generated or not. It will always execute.
+	//close db connection
+}
+
+
+we can write try block with finally block only and without any catch block i.e. try with finally only.
+
+Following is valid
+
+try
+{
+	//code
+}
+finally
+{
+}
+
+But we can not write only try block without any catch or finally block
+
+Following is not valid
+
+try
+{
+	//code
+}
+
+it we use try block it becomes mandatory to use either catch or finally or both catch as well as finally with the try block.
+
+Following is also valid.
+
+try
+{
+	//code
+}
+catch()
+{
+}
+
+
+Following is also valid.
+
+try
+{
+	//code
+}
+catch()
+{
+}
+finally
+{
+}
+
+======================================================================================
+
+What will happen when we use only finally with the try block and suppose there exists some exception at run time.
+
+try
+{
+	//DB connection open
+	//Some exception takes place here
+}
+finally
+{
+	//DB connection close
+	System.out.println("Control came to finally block");
+}
+
+NOTE : finally block will definitely execute but our program will terminate.
+======================================================================================
+
+try
+{
+	//DB connection open
+	//Some exception takes place here
+}
+catch()
+{
+}
+catch()
+{
+}
+
+//DB connection close
+
+======================================================================================	
+
+Single Universal Handler: Exception class (Catch all exception)
+
+class ExceptionHandlingDemo7
+{
+
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		int a = 5;
+		int b = 5;		//Only change is setting value of b to 5
+
+		int x = 10;
+
+		int arr[] = {1,2,3,4,5};
+		try
+		{
+			System.out.println("DB connection opened");
+			int res = a/b;			//might generate ArithmeticException
+			System.out.println("Result : " + res);
+
+			for(int i = 0; i < 6; i++)
+			{
+				System.out.println(arr[i]);
+			}
+
+		}
+		catch(Exception e)			//Universal or catch all exceptions handler
+		{
+			System.out.println("Exception caught ");
+			e.printStackTrace();
+		}
+		finally
+		{
+			System.out.println("DB connection closed with x : "+x);
+		}
+		System.out.println("Program terminated successfully");
+	}
+}
+
+OUTPUT:
+
+Program started its execution
+DB connection opened
+Result : 1
+1
+2
+3
+4
+5
+Exception caught 
+java.lang.ArrayIndexOutOfBoundsException: 5
+	at ExceptionHandlingDemo7.main(ExceptionHandlingDemo7.java:21)
+DB connection closed with x : 10
+Program terminated successfully
+
+======================================================================================
+
+throw keyword
+
+It is used to explicitly throw some exception object.
+It is also used to rethrow any exception object.
+
+class ExceptionHandlingDemo8
+{
+
+	public static void main(String args[])
+	{
+		System.out.println("Program started its execution");
+		
+		try
+		{
+			System.out.println("DB connection opened");
+			ArithmeticException arithExcpObj = new ArithmeticException();
+			throw arithExcpObj;			//explicitly throwing exception object
+			
+			//throw new ArithmeticException();	//OK. It is mostly used.
+			
+			/*if(some condition)
+			{
+				then throw explicitly some exception object.
+			}*/
+
+		}
+		catch(ArithmeticException e)			
+		{
+			System.out.println("ArithmeticException caught ");
+			e.printStackTrace();
+		}
+		finally
+		{
+			System.out.println("DB connection closed");
+		}
+		System.out.println("Program terminated successfully");
+	}
+}
+
+
+OUTPUT:
+
+Program started its execution
+DB connection opened
+ArithmeticException caught 
+java.lang.ArithmeticException
+	at ExceptionHandlingDemo8.main(ExceptionHandlingDemo8.java:11)
+DB connection closed
+Program terminated successfully
+
+-----------------------------------------------------------------------------------
+
+class ExceptionHandlingDemo10
+{
+
+	public static int doCalculation(int a, int b)		//called method
+	{
+		int res = -1;
+		try
+		{
+			res = a/b;
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("Arithmetic exception caught and handled inside doCalculation method. ");
+			throw e;		//Rethrowing exception object
+		}
+		return res;
+		
+	}
+
+	public static void main(String args[])			//calling method
+	{
+		System.out.println("Program started its execution");
+		
+		try
+		{
+			int res = doCalculation(5,0);
+			System.out.println("Result: "+res);
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("Arithmetic exception caught and handled inside main method. ");
+			throw e;		//program terminate here as e is thrown but not caught
+		}	
+		
+		
+		System.out.println("Program terminated successfully");
+	}
+}
+
+======================================================================================
+
+throws keyword
+
+It is always used with method signature.
+It is used to specify the type of exceptions a method might throw so that calling exception can handle it.
+
+Called method says to the calling method "I might throw these list of exceptions. This is for your information. If you call me then please handle these exceptions at your end".
+
+import java.io.*;
+
+class ExceptionHandlingDemo12
+{
+
+	public static int doCalculation(int a, int b) throws IOException, ArithmeticException	//called method
+	{
+		int res = -1;
+		try
+		{
+			res = a/b;
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("Arithmetic exception caught and handled inside doCalculation method. ");
+			throw e;		//Rethrowing exception object
+		}
+		return res;
+		
+	}
+
+	public static void main(String args[])			//calling method
+	{
+		System.out.println("Program started its execution");
+		int res = doCalculation(5,0);			//Will give compilatin error as IOException (checked exception) is not handled here.
+		System.out.println("Result: "+res);
+		System.out.println("Program terminated successfully");
+	}
+}
+
+Compilation OUTPUT:
+
+ExceptionHandlingDemo12.java:24: error: unreported exception IOException; must be caught or declared to be thrown
+		int res = doCalculation(5,0);
+		                       ^
+1 error
+
+----------------------------------------------------------------------------------------
+
+import java.io.*;
+
+class ExceptionHandlingDemo13
+{
+
+	public static int doCalculation(int a, int b) throws IOException, ArithmeticException	//called method
+	{
+		int res = -1;
+		try
+		{
+			res = a/b;
+		}
+		catch(ArithmeticException e)
+		{
+			System.out.println("Arithmetic exception caught and handled inside doCalculation method. ");
+			throw e;		//Rethrowing exception object
+		}
+		return res;
+		
+	}
+
+	public static void main(String args[])			//calling method
+	{
+		System.out.println("Program started its execution");
+		try
+		{
+			int res = doCalculation(5,0);
+			System.out.println("Result: "+res);
+		}
+		catch(IOException e)
+		{
+			System.out.println("IOException caught and handled inside main method. ");
+		}
+		
+		
+		System.out.println("Program terminated successfully");
+	}
+}
+
+OUTPUT:
+Program started its execution
+Arithmetic exception caught and handled inside doCalculation method. 
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at ExceptionHandlingDemo13.doCalculation(ExceptionHandlingDemo13.java:11)
+	at ExceptionHandlingDemo13.main(ExceptionHandlingDemo13.java:27)
+
+
+=====================================================================================
+
+class ExceptionHandlingDemo14
+{
+
+	public static int doCalculation(int a, int b) throws IOException, ArithmeticException	//called method
+	{
+		int res = a/b;
+		return res;
+		
+	}
+
+	public static void main(String args[])			//calling method
+	{
+		System.out.println("Program started its execution");
+		int res = doCalculation(5,0);
+		System.out.println("Result: "+res);
+		System.out.println("Program terminated successfully");
+	}
+}
+
+==========================================================================
+
+try
+catch
+finally
+throw
+throws
+==========================================================================
+
+Checked exception: Exception which must be handled or we can say compiler forces us to handle such exception.
+Unchecked exception: Exception which can or can not be handled and compiler does not force us to handle such exception.
+
+Ex:
+Checked exception - IOException, FileNotFoundException
+Unchecked exception - ArithmeticException, ArrayIndexOutOfBoundsException, NullPointerException
+
+==========================================================================
+
+NullPointerException
+When we have null reference and we are trying to access data or method through that null reference then NullPointerException is generated.
+
+class Demo
+{
+	void fun()
+	{
+		System.out.println("fun of Demo");
+	}
+}
+
+NullPointerExceptionDemo
+{
+	Demo d1;
+	d1 = new Demo();
+	
+	d1.fun();
+}
+
+==================================================================================
+
+User Defined Exception Classes
+
+class MyException extends Exception		//Checked Exception
+{
+}
+
+Now MyException class is an user defined exception class.
+
+class MyException extends RuntimeException		//Unchecked Exception
+{
+}
+
+Now MyException class is an user defined exception class.
+
+getMessage();
+
+/ by Zero => exception message
+
+"This is an user defined exception object message"
+
+==================================================================================
+
+class Exception				//Just assumption
+{
+	private String excpMsg;
+	
+	public Exception(String msg)
+	{
+		this.excpMsg = msg;
+	}
+	
+	public String getMessage()
+	{
+		return "Exception: " + excpMsg;
+	}
+}
+
+class MyException extends Exception
+{
+	public MyException(String msg)
+	{
+		super(msg);
+	}
+}
+
+class UserDefinedCheckedExceptionDemo
+{
+	public static void main(String args[])
+	{
+		new MyException("this is user defined exception object message");
+	}
+}
+
+---------------------------------------------------------
+String str2 = "How r u";
+String str = "Hello" + "Friends" + "Welcome" + str2;
+
+str => Hello Friends Welcome How r u
+---------------------------------------------------------
+
+
+throw new ArithmeticException();
+throw new ArithmeticException("This exception message is added by user");
+
+======================================================================================
+
+try with resources
+
+
+try 
+{
+	FileReader fr = new FileReader("input.txt"); 
+	PrintWriter pw = new PrintWriter("output.txt");
+	//Code
+}
+finally
+{
+	//close fr and pw
+}
+	
+
+try (FileReader fr = new FileReader("input.txt"); PrintWriter pw = new PrintWriter("output.txt"))
+{
+	//fr = new FileReader("otherfile.txt"); //Error, as fr and pw is final.
+}
+
+
+The resources (object) opened through try will automatically be closed independent of whether any exception takes place or not.
+All resources class which we use with try must implement AutoCloseable interface.
+
+
+
+interface AutoCloseable
+{
+	public void close() throws Exception;
+}
+
+class FileReader implements AutoCloseable
+{
+	public void close() throws Exception
+	{
+		//code
+	}
+}
+
+
+======================================================================================
+
+Nested try-catch block
+
+try
+{
+	//suppose one exception is thrown from here of ExcepType2
+}
+catch(ExcepType1)
+{
+}
+catch(ExcepType2)
+{
+}
+
+
+---------------------------------------------------------------
+
+try					//Outer try block
+{
+	//Generate exception		// Handler : ExcepType3, ExcepType4
+	throw ExcepType1; 		// Program will terminate.
+	
+	try				//Inner try block
+	{
+		//Generate exception	// Handler : ExcepType1, ExcepType2, ExcepType3, ExcepType4
+		throw ExcepType3;	//Will be caught in outer handler for ExcepType3
+	}
+	catch(ExcepType1)
+	{
+	}
+	catch(ExcepType2)
+	{
+	}
+}
+catch(ExcepType3)
+{
+}
+catch(ExcepType4)
+{
+}
+
+Outer try block handlers : ExcepType3, ExcepType4
+Inner try block handlers : ExcepType1, ExcepType2, ExcepType3, ExcepType4
+
+---------------------------------------------------------------
+
+class NestedTryCatchDemo
+{
+	public static void fun()
+	{
+		//Generate exception		// Handler : ExcepType3, ExcepType4
+		throw ExcepType1; 		// Program will terminate.
+		
+		try				//Inner try block
+		{
+			//Generate exception	// Handler : ExcepType1, ExcepType2, ExcepType3, ExcepType4
+			throw ExcepType3;	//Will be caught in outer handler for ExcepType3
+		}
+		catch(ExcepType1)
+		{
+		}
+		catch(ExcepType2)
+		{
+		}
+	}
+
+	public static void main(String args[])
+	{
+
+		try					//Outer try block
+		{
+			fun();
+		}
+		catch(ExcepType3)
+		{
+		}
+		catch(ExcepType4)
+		{
+		}
+	}
+}
+
+Outer try block handlers : ExcepType3, ExcepType4
+Inner try block handlers : ExcepType1, ExcepType2, ExcepType3, ExcepType4
+
+
+======================================================================================
+
+Following code is OK
+
+try
+{
+	//Code
+}
+catch(ArtithmeticException ae)
+{
+}
+catch(NullPointerException ne)
+{
+}
+catch(Exception e)
+{
+}
+
+---------------------------------------------------------------------------------
+Following code will give compilation error as we are using parent exception type as a first handler before the child exception type handler.
+
+try
+{
+	//Code
+}
+catch(Exception e)
+{
+}
+catch(ArtithmeticException ae)
+{
+}
+catch(NullPointerException ne)
+{
+}
+
+If we use multiple handlers (multiple catch blocks) then we should take care of the inheritance hierarchy, means child class type exception should always come before the parent class type exception handler.
+
+One Liner: First child handler then parent handler if there is inheritance relationship between different handlers of a try block.
+
+class ExceptionHandlingDemo17
+{
+	public static void main(String args[])
+	{
+		try
+		{
+		}
+		catch(Exception e)
+		{
+		}
+		catch(ArithmeticException ae)
+		{
+		}
+		catch(NullPointerException ne)
+		{
+		}
+
+		System.out.println("Program completed successfully");
+	}
+}
+
+
+OUTPUT:
+
+ExceptionHandlingDemo17.java:11: error: exception ArithmeticException has already been caught
+		catch(ArithmeticException ae)
+		^
+ExceptionHandlingDemo17.java:14: error: exception NullPointerException has already been caught
+		catch(NullPointerException ne)
+
+
+======================================================================================
+
+multi-catch statement
+
+class ExceptionHandlingDemo17
+{
+	public static void main(String args[])
+	{
+		try
+		{
+			//code
+		}
+		catch(ArithmeticException ae)
+		{
+		}
+		catch(NullPointerException ne)
+		{
+		}
+		catch(ArrayIndexOutOfBoundsException ne)
+		{
+		}
+
+		System.out.println("Program completed successfully");
+	}
+}
+
+The above code can be written as follows:
+
+class ExceptionHandlingDemo17
+{
+	public static void main(String args[])
+	{
+		try
+		{
+			//code
+		}
+		catch(ArithmeticException | NullPointerException | ArrayIndexOutOfBoundsException e) //multi-catch statement
+		{
+			
+		}
+
+
+		System.out.println("Program completed successfully");
+	}
+}
+
+OUTPUT:
+Program completed successfully
+----------------------------------------------------------------------------------------------------------
+In the above code, single catch block can handle three type of exceptions which are ArithmeticException, NullPointerException and ArrayIndexOutOfBoundsException.
+
+Note that there should not be any parent child relationship between the differnt types when we use single catch block to handle the different types of exceptions.
+
+------------------------------------------------------------------------------------------------
+So following code will give compilation error because there is inheritance (parent-child) relationship between Exception and other types. Types cannot be related by subclassing in a multi-catch statement.
+
+class ExceptionHandlingDemo18
+{
+	public static void main(String args[])
+	{
+		try
+		{
+			//code
+		}
+		catch(ArithmeticException | NullPointerException | ArrayIndexOutOfBoundsException | Exception e)	//multi-catch statement
+		{
+			
+		}
+
+
+		System.out.println("Program completed successfully");
+	}
+}
+
+OUTPUT:
+Compilation error:
+
+error: Alternatives in a multi-catch statement cannot be related by subclassing
+		catch(ArithmeticException | NullPointerException | ArrayIndexOutOfBoundsException | Exception e)
+		                                                                                    ^
+  Alternative ArithmeticException is a subclass of alternative Exception
+1 error
+
+
+

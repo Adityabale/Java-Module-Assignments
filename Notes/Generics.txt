@@ -1,0 +1,725 @@
+Generics
+
+It is used to perform same operation on different type of objects/data.
+Generic means Parameterized Types.
+
+class TwoNumbers
+{
+	int num1;
+	int num2;
+	
+	TwoNumbers()
+	{
+		num1 = 0;
+		num2 = 0;
+	}
+	
+	TwoNumbers(int a, int b)
+	{
+		this.num1 = a;
+		this.num2 = b;
+	}
+	
+	int getSum()
+	{
+		int sum = num1 + num2;
+		return sum;
+	}
+}
+
+class TwoDoubleNumbers
+{
+	double num1;
+	double num2;
+	
+	TwoNumbers()
+	{
+		num1 = 0;
+		num2 = 0;
+	}
+	
+	TwoNumbers(double a, double b)
+	{
+		this.num1 = a;
+		this.num2 = b;
+	}
+	
+	double getSum()
+	{
+		double sum = num1 + num2;
+		return sum;
+	}
+}
+
+class MyGenDemo
+{
+	public static void main(String args[])
+	{
+		TwoNumbers tn1 = new TwoNumbers(5,10);
+		int sum = tn1.getSum();
+		System.out.println(sum);
+		
+		TwoNumbers tn2 = new TwoDoubleNumbers(3.5,6.7);
+		double dsum = tn2.getSum();
+		System.out.println(dsum);
+	}
+}
+
+Logic is same only type differs.
+
+
+==================================================================================
+Important Note: Genric works upon class type only and not for primitive type.
+
+Example: Defining a generic class.
+
+class TwoNumbers <T>		//Now it becomes a generic class.
+{
+}
+
+
+NonGeneric
+
+class MyGen 
+{
+	int ob;
+
+	public MyGen(int ob)
+	{
+		this.ob = ob;
+	}
+
+	public int getOb()
+	{
+		return ob;
+	}
+}
+
+Generic
+
+class MyGen <T>
+{
+	T ob;
+
+	public MyGen(T ob)
+	{
+		this.ob = ob;
+	}
+
+	public T getOb()
+	{
+		return ob;
+	}
+}
+
+
+class GenDemo
+{
+	public static void main(String args[])
+	{
+		new MyGen<int>();
+		MyGen<Integer> mg1 = new MyGen<> (100);
+		//MyGen<Integer> mg1 = new MyGen<>(100);		//OK, this is also correct.
+		
+		Integer iob1 = mg1.getOb();
+		System.out.println(iob1);
+
+		MyGen<Double> mg2 = new MyGen<Double> (78.5);
+		Double dob1 = mg2.getOb();
+		System.out.println(dob1);
+	}
+}
+
+
+------------------------------------------------------------------------
+
+class MyGen <T>
+{
+	T ob;
+
+	public MyGen(T ob)
+	{
+		this.ob = ob;
+	}
+
+	public T getOb()
+	{
+		return ob;
+	}
+}
+
+class First
+{
+	int data = 10;
+	
+	public String toString()
+	{
+		String str = "First[data = "+data+"]";
+		return str;
+	}
+}
+
+class GenDemo
+{
+	public static void main(String args[])
+	{
+		//MyGen<Integer> mg1 = new MyGen<>(100);		//OK, this is also correct.
+		
+		MyGen <Integer> mg1 = new MyGen <Integer> (100);
+		Integer iob1 = mg1.getOb();
+		System.out.println(iob1);
+
+		MyGen<Double> mg2 = new MyGen<Double> (78.5);
+		Double dob1 = mg2.getOb();
+		System.out.println(dob1);
+		
+		First f1 = new First();
+		MyGen<First> mg3 = new MyGen<First>(f1);
+		First firstOb = mg3.getOb();
+		System.out.println(firstOb);
+		
+		MyGen<String> mg4 = new MyGen<String> ("Welcome");
+		String str1 = mg4.getOb();
+		System.out.println(str1);
+	}
+}
+
+------------------------------------------------------------------------------------
+
+class MyGen <T>
+{
+	T ob;
+
+	public MyGen(T ob)
+	{
+		this.ob = ob;
+	}
+
+	public T getOb()
+	{
+		return ob;
+	}
+}
+
+class First
+{
+	int data1 ;
+	int data2 ;
+	
+	First(int d1, int d2)
+	{
+		this.data1 = d1;
+		this.data2 = d2;
+	}
+	
+	public String toString()
+	{
+		String str = "First[data1 = "+data1+", data2 = " + data2 + "]";
+		return str;
+	}
+}
+
+class GenDemo
+{
+	public static void main(String args[])
+	{
+		First f1 = new First(10,20);
+		
+		MyGen<First> mg3 = new MyGen<First>(f1);
+		First firstOb = mg3.getOb();
+		System.out.println(firstOb);
+		
+	}
+}
+
+======================================================================================
+
+What internally happens with generic classes
+
+class MyGen <T>
+{
+	T ob;
+
+	public MyGen(T ob)
+	{
+		this.ob = ob;
+	}
+
+	public T getOb()
+	{
+		return ob;
+	}
+}
+
+========================================================================================
+
+Nongeneric class to handle different type of objects/data.
+Key point : Object is the super class of all the classes.
+
+class MyNonGen
+{
+	Object ob;			//can keep the reference of Integer, Double, String, First 
+
+	public MyNonGen(Object ob)
+	{
+		this.ob = ob;
+	}
+
+	public Object getOb()
+	{
+		return ob;
+	}
+}
+
+class First
+{
+	int data1 ;
+	int data2 ;
+	
+	First(int d1, int d2)
+	{
+		this.data1 = d1;
+		this.data2 = d2;
+	}
+	
+	public String toString()
+	{
+		String str = "First[data1 = "+data1+", data2 = " + data2 + "]";
+		return str;
+	}
+}
+
+class MyNonGenDemo
+{
+	public static void main(String args[])
+	{
+		MyNonGen mng1 = new MyNonGen(100);
+		Integer iob1 = (Integer)mng1.getOb();
+		System.out.println(iob1);
+		
+		MyNonGen mng2 = new MyNonGen("Welcome");
+		String str1 = (String)mng2.getOb();
+		System.out.println(str1);
+		
+		First f1 = new First(10,20);
+		MyNonGen mng3 = new MyNonGen(f1);
+		First firstOb = (First)mng3.getOb();
+		System.out.println(firstOb);
+	}
+}
+
+=======================================================================================
+class MyNonGen
+{
+	Object ob;			//can keep the reference of Integer, Double, String, First 
+
+	public MyNonGen(Object ob)
+	{
+		this.ob = ob;
+	}
+
+	public Object getOb()
+	{
+		return ob;
+	}
+}
+
+class MyNonGenDemo2
+{
+	public static void main(String args[])
+	{
+		MyNonGen mng1 = new MyNonGen(100);	//First MyNonGen object
+		int iob1 = (Integer) mng1.getOb();	//Integer = Object, int = (Integer) Object, Explicit Casting
+		System.out.println(iob1);
+
+		MyNonGen mng2 = new MyNonGen("Welcome");	//Second MyNonGen object
+		String str1 = (String)mng2.getOb();
+		System.out.println(str1);
+
+		mng1 = mng2; //OK, No error and now mg1 will containg the refernce of second MyNonGen object. No Type Safety.
+		int iob2 = (Integer) mng1.getOb();	//Integer = Object, int = (Integer) Object
+	}
+}
+
+
+Disadvantage of Non-generic implementation:
+1. Explicit casting is required.
+2. No type safety is there.
+=======================================================================================
+Generic class for the same non generic code.
+
+class MyGen <T>
+{
+	T ob;
+
+	public MyGen(T ob)
+	{
+		this.ob = ob;
+	}
+
+	public T getOb()
+	{
+		return ob;
+	}
+}
+
+class MyGenDemo
+{
+	public static void main(String args[])
+	{
+		MyGen <Integer> mg1 = new MyGen <Integer> (100);
+		Integer iob1 = mg1.getOb();		//No explicit casting is required.
+		System.out.println(iob1);
+
+		MyGen<String> mg2 = new MyGen<String> ("Welcome");
+		String str1 = mg2.getOb();
+		System.out.println(str1);
+		
+		//mg1 = mg2;	//Type Safety. error: incompatible types: MyGen<String> cannot be converted to MyGen<Integer>. 
+		
+		System.out.println("mg1 class : "+mg1.getClass().getName());
+		System.out.println("mg1 class : "+mg2.getClass().getName());
+	}
+}
+
+Advantage of Generic over Non-generic implementation
+1. No explicit casting is required.
+2. Type safety is there.
+
+=======================================================================================
+
+
+class MyGen <T>
+{
+	T ob;
+
+	public MyGen(T ob)
+	{
+		this.ob = ob;
+	}
+
+	public T getOb()
+	{
+		return ob;
+	}
+}
+
+class MyGenDemo
+{
+	public static void main(String args[])
+	{
+		MyGen <Integer> mg1 = new MyGen <Integer> (100);
+		Integer iob1 = mg1.getOb();		//No explicit casting is required.
+		System.out.println(iob1);
+
+		MyGen<String> mg2 = new MyGen<String> ("Welcome");
+		String str1 = mg2.getOb();
+		System.out.println(str1);
+		
+	}
+}
+
+===================================================================================
+Internally the above program is converted as follows by the compiler:
+
+class MyGen extends Object
+{
+	Object ob;
+
+	public MyGen(Object ob)
+	{
+		this.ob = ob;
+	}
+
+	public Object getOb()
+	{
+		return ob;
+	}
+}
+
+class MyGenDemo
+{
+	public static void main(String args[])
+	{
+		MyGen mg1 = new MyGen (100);
+		Integer iob1 = (Integer) mg1.getOb();		
+		System.out.println(iob1);
+
+		MyGen mg2 = new MyGen ("Welcome");
+		String str1 = (String) mg2.getOb();
+		System.out.println(str1);
+		
+	}
+}
+
+NOTE: So, there is only one version of class exists there for each generic class for dealing with different type of class objects.
+
+From the above code conversion by compiler it is clear that,
+No type info i.e. T exists at run time.
+The above process is also known as type erasure.
+
+===================================================================================
+
+class MyGen <T1,T2>
+{
+	T1 a;
+	T2 b;
+	
+	public T1 getA()
+	{
+		return a;
+	}
+	
+	public T2 getB()
+	{
+		return b;
+	}
+}
+
+class MyGenDemo
+{
+	public static void main(String args[])
+	{
+		MyGen<Integer,Double> mg1 = new MyGen<Integer,Double>();
+		//MyGen<Integer,Double> mg1 = new MyGen<>();
+	}
+}
+===================================================================================
+
+Upper Bound
+--------------
+
+
+class MyGen<T>			// T can be Integer, Double, String, any user defined class, any class
+{
+	T ob;
+}
+
+
+class MyGen<T extends Number>		// T can be either Number or any child class of Number (Integer, Float ..)
+{
+	T ob;
+}
+
+class MyGenDemo
+{
+	public static void main(String args[])
+	{
+		MyGen<Integer> mg1 = new MyGen<>(100);		//OK, as Integer is a child class of Number.
+		MyGen<String> mg2 = new MyGen<>("Welcome");	//ERROR, as String is not a child class of Number.
+	}
+}
+
+===================================================================================
+
+Generic methods
+
+class MyGen<T>
+{
+	void myFun1(T a, T b)
+	{
+		//code
+	}
+	
+	<T1> void myFun2(T1 x)		//new Type at method level which is different from class level.
+	{
+		//code
+	}
+}
+
+-----------------------------------------------------------------------
+
+class MyGen<T>
+{
+	void myFun1(T a, T b)
+	{
+		//code
+	}
+	
+	<T1 extends Number> void myFun2(T1 x)		//new Type at method level which is different from class level.
+	{
+		//code
+	}
+}
+
+
+Example:
+
+class MyGen<T extends Number>
+{
+	void printNumber(T a)
+	{
+		System.out.println(a);
+	}	
+	
+	<T1> void printAny(T1 x)			//T1 is valid at this method level only.
+	{
+		System.out.println(x);
+	}
+	
+}
+
+class MyGenDemo
+{
+	public static void main(String args[])
+	{
+		MyGen <Integer> mg1 = new MyGen<>();
+		mg1.printNumber(25);
+		
+		//mg1.printNumber("Welcome");		//Error	
+		mg1.printAny("Welcome");
+	}
+}
+
+
+
+<T1  extends Number> void printAny(T1 x)	
+{
+	System.out.println(x);
+}
+
+===================================================================================
+class level <T> can not be used with static data and static method. It will give error.
+
+class MyGen<T extends Number>		
+{
+	static T ob;			//Error
+	
+	static void fun(T a)		//Error
+	{
+	}
+	
+	static <T1  extends Number> void anotherFun(T1 x)	//This is OK as T1 is not a class level type, declared here itself.
+	{
+	}
+}
+===================================================================================
+
+A non-generic class can have generic methods and constructors
+
+class Demo
+{
+	<T1  extends Number> Demo (T1 a)
+	{
+	}
+	
+	<T1  extends Number> void anotherFun(T1 x)
+	{
+	}
+} 
+
+=====================================================================================
+
+class Stats <T>
+{
+	void myFun1(Stats<T> obj) 		//type of obj should be same as calling object type
+	{
+		System.out.println("myFun1 method");
+	}
+	
+	void myFun2(Stats<?> obj) 		//type of obj can be any valid object of class Stats
+	{
+		System.out.println("myFun2 method");
+	}
+	
+	void myFun3(Stats<? extends Number> obj) //type of obj can be any valid object of stats with parameter type Number or any child of Number
+	{
+		System.out.println("myFun2 method");
+	}
+	
+	void myFun4(T obj) 		//type of obj can be any class object. No need to be Stats object
+	{
+		System.out.println("myFun1 method");
+	}
+}
+
+
+class MyGenDemo
+{
+	public static void main(String args[])
+	{
+		Stats<Integer> s1 = new Stats<Integer>();
+		Stats<Integer> s2 = new Stats<Integer>();
+		
+		Stats<String> s3 = new Stats<String>();
+		Stats<Double> s4 = new Stats<Double>();
+		
+		//calling object is s1 whose type is Stats<Integer> and type of s3 is Stats<String>
+		s1.myFun1(s3);			//ERROR, calling object is s1
+		s3.myFun1(s1);			//ERROR, calling object is s3
+		
+		s1.myFun1(s2);			//OK as s1 and s2 both have same type.			
+		
+		s1.myFun2(s3);			//OK
+		s1.myFun2(s2);			//OK				
+		
+		s1.myFun3(s3);			//Error, as type of s3 is Stats<String>
+		s1.myFun3(s2);			//OK
+		s1.myFun3(s4);			//OK	
+		
+		s1.myFun4(100);	
+		
+		
+		
+	}
+}
+
+
+Stats<T> obj => Obj type should be same as calling object type.
+Stats<?> obj  => Any valid object of Stats. It is not needed that type should be same as calling object type.
+Stats<? extends Number> obj => Any valid object of stats with parameter type Number or any child of Number (Ineger, Float,..). It is not needed that type should be same as calling object type.
+
+=====================================================================================
+Generic Interface
+
+interface MyGenInterface <T>
+{
+}
+
+interface MyGenInterface <T extends Number>
+{
+}
+=====================================================================================
+Implementing generic interface
+
+interface MyGenInterface <T>
+{
+}
+
+class Demo <T> implements MyGenInterface<T>
+
+OR;
+
+class Demo implements MyGenInterface <String>
+
+OR;
+
+class Demo implements MyGenInterface <Integer>
+
+=====================================================================================
+
+class MyGen1 <T>
+{
+}
+
+class MyGen2<T,V> extends MyGen1<T>
+{
+}
+
+class MyGen2 extends MyGen<Integer>
+
+=====================================================================================
+
+MyGen<Integer>
+
+MyGen<Number>
+
+we can not say that MyGen<Number> is the parent class of MyGen<Integer>
+
+=====================================================================================
+
+
+
+
+
+

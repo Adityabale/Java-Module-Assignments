@@ -1,0 +1,222 @@
+Enter size of the array:
+5
+
+Enter the values for the array
+2
+3
+4
+5
+6
+
+Entered values are:
+2
+3
+4
+5
+6
+
+===================================================================
+
+Scanner - To read input from the console/keyboard/end user.
+
+====================================================================
+
+
+Jagged Array
+
+int myarr[][];
+
+myarr = new int[3][];
+
+//int myarr[][] = new int[3][];
+
+myarr[0] = new int[2];
+myarr[1] = new int[3];
+myarr[2] = new int[1];
+
+
+==========================================
+Operators
+
+a = a + 5;
+a += 5;
+
+a = a * b;
+a *= b;
+
+& (and), |(or) , ~ (not) , ^ (xor) => can be used with binary data as well as boolean data.
+
+int a = 5;
+int b = 6;
+int c;
+
+boolean x = true;
+boolean y = false;
+boolean z;
+
+c = a & b;
+z = x & y;
+
+sop(c)
+sop(z)
+
+
+=====================================
+
+int a = 5;
+int b = 10;
+
+int c;
+
+if (a > b)
+	c = 10;
+else
+	c = 20;
+	
+	
+Ternary operator for the same
+
+c = a > b ? 10 : 20 ;
+
+===============================================
+
+post & pre - increment & decrement operator
+
+int x = 5;
+
+int y = x++; 	//step 1: y = 5; step 2: x = 6
+int y = ++x;	//step 1: x = 6; step 2: y = 6
+
+x++, ++x => x = x+1;
+x--, --x => x = x-1;
+
+-------------------------------------------------
+
+int x = 5;
+
+int y = x--; 	//step 1: y = 5; step 2: x = 4
+int y = --x;	//step 1: x = 4; step 2: y = 4
+
+-------------------------------------------------
+
+int x = 5;
+
+int y = x++ + ++x ;		//11, 12, 13
+
+y = 5 + 7 => 12
+x = 7
+
+int x = 5;
+
+int y = ++x + x++ - x--;
+
+int y = 6 + 6 - 7 = 5
+x => 6, 7, 6
+
+finally, x = 6 and y = 5
+
+Basically x will change in every increment/decrement, but main question is what - what value of x we have to use , means whether the current value or incremented/decremented value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

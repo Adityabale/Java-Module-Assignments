@@ -1,0 +1,375 @@
+Miscellaneous Topics
+=========================
+
+
+Typecasting
+===================
+
+Conversion between primitive data types.
+
+int a = 5;
+double d = 23.5;
+
+d = a ; //widening; does not require explicit casting
+a = (int) d ; //narrowing; requires explicit casting
+
+Conversion (Typecasting) between different class types.
+Rules:
+1. Casting is possible between two class types if they relate to each other through inheritance. (Compile time)
+2. A class can keep the reference of its own class or its child class object.	(Runtime)
+
+Parent ref type = Child obj ref		// Upcasting/Widening/Generalisation
+Child ref type = Parent obj ref		// Downcasting/Narrowing/Specialisation 
+
+class A
+{
+}
+
+class B extends A
+{
+}
+
+class C extends B
+{
+}
+
+C c = new C();
+
+A a = c;		//OK, Upcasting
+
+A a = new C();		//Ok, Upcasting
+
+c = (C) a;		//Child = Parent, Downcasting, Requires explicit casting.
+
+
+
+
+A ---> B -----> C ------> D
+
+
+============================================================================
+
+instanceof operator
+
+It just tells whether an object is an instance of a class or not.
+
+obj instanceof class
+
+============================================================================
+
+Interface new features
+=======================
+
+Java 8 onwards:
+1. Interface can have static implemented methods.
+2. Interface can have default implemented methods.
+
+interface MyInterface
+{
+	public void myFun1();
+	static public void myFun2()
+	{
+		System.out.println("myFun2 of MyInterface");
+	}
+	
+}
+
+functional interface - Has only one abstract method/function.
+=========================
+interface MyInterface
+{
+	void myFun1();
+}
+
+
+Marker interface - Does not have any method.
+=======================
+interface MyInterface
+{
+}
+
+
+=============================================================
+
+class A
+{
+	class B
+	{
+	}
+}
+
+=============================================================
+
+interface OneInterface
+{
+	public void myMethod();
+}
+
+public static void main()
+{
+	OneInterface oif = Reference of any class implementing OneInterface;
+	
+	OneInterface oif = new OneInterface(){
+		public void myMethod()
+		{
+			System.out.println("myMethod from anonymous inner class");
+		}
+	};
+	
+	oif.myMethod();
+}
+
+
+Inner class can be created:
+
+Within a class
+Within an interface
+Within an method
+Anonymous inner class
+
+Inner interface => interface inside interface
+
+======================================================================================================
+static import java.lang.System
+
+static import will import only static members (data and functions)
+
+
+System.out.println("hello friends");
+
+System.out.printf("%s",str);
+
+======================================================================================================
+
+Object cloning
+
+
+MyClass myObj = new MyClass(5,10);
+
+fun(myObj);		//it passes the reference
+
+sop(myObj);		//Change will also reflect here which is done inside fun.
+
+void fun(MyClass myObj)
+{
+	//We can make change in the object referred by myObj.	//Change done here
+}
+
+
+======================================================================================================
+
+Regex: [5-9]
+1
+2
+0
+3
+8
+9
+
+Regex: [5-9]{2}
+55
+66
+56
+65
+99
+5  - Not valid
+587 - Not valid
+
+Regex: [5-9]{3}
+Valid string: 567, 679, 676, 879, 999
+Not valid: 55, 5, 56, 5678, 448, 222
+
+[^5-9]{3}
+valid : 442, 000, 224, 333, 123
+invalid: 567, 5, 50
+
+Regex: [abc] => either a or b or c
+
+[abc]{2}
+valid: ab, ac, cc, bc, aa
+
+[abc]
+valid: a, b, c
+
+[234]+
+valid: 2, 3, 4, 22, 234, 222222222, 2433333
+
+[234]? 
+valid: 2, 3, 4
+
+[234]*
+valid: 2, 3, 222223,323, 342
+
+(a|b|c)
+
+-- Backslash in regex ---------------
+
+When a string is double quoted, it is processed by the compiler and again at run-time. Since a backslash (\) is removed whenever the string is processed, the double-quoted string needs double backslashes so that there is one left in the string at run time to escape a "special character".
+Backslash is an escape character in regular expressions. You can use '\\' to refer to a single backslash in a regular expression.
+
+However, backslash is also an escape character in Java literal strings. To make a regular expression from a string literal, you have to escape each of its backslashes. In a string literal '\\\\' can be used to create a regular expression with '\\', which in turn can match '\'.
+
+String regex = "(\\\\91|0)[1-9][0-9]{9}";
+System.out.println(regex)  // will print (\\91|0)[1-9][0-9]{9} which means starting with \91 
+
+The Metacharacters => <([{\^-=$!|]})?*+.>
+
+
+
+\d*   => [0-9]
+
+\*
+
+Mobile number validation:
+e.g. +919876987645, 09876987645
+[0-9]{10}
+
+(\\+91|0)[1-9][0-9]{9}
+
+
+valid email id:
+
+rohit348_egr@gmail.com
+rohit@cdac.in
+
+[a-zA-Z][a-zA-Z0-9_-.]*@(gmail\\.com|cdac\\.in)
+
+
+[a-zA-Z]
+a
+b
+c
+x
+
+A
+B
+N
+
+password - 8 character, Uppercase, number, special charcters (@$_)	
+
+
+=============================================================
+
+
+shallow copy => Along with primitive data, reference is also copied.
+Deep copy => Along with primitive data, reference is not copied. Instead of that a clone of referenced object is also created and then reference of newly created cloned object is saved in the new copy.
+
+
+
+
+=============================================================
+
+Lambda Exp is used to implement the functional interface.
+
+interface SumOperation
+{
+	int doSum(int x, int y);
+}
+
+class LambdaExpDemo
+{
+	public static void main(String args[])
+	{
+		SumOperation sop = new SumOperation(){
+			int doSum(int x, int y)
+			{
+				return x+y;
+			}
+		};
+		
+		System.out.println("Sum = "+sop.doSum());
+	}
+}
+
+
+Syntax of Lambda Expression:
+
+(parameters) -> {expression body};	//In this case expression body may contain one or more statements.
+
+(parameters) -> expression;	//In this case expression body contains only one statement.
+
+() -> expression;		//In this case there is no parameter and expression body contains only one statement.
+(x) -> expression;		//In this case there is one parameter and expression body contains only one statement.
+x -> expression;		//In this case there is one parameter and expression body contains only one statement.
+()-> {expression body}		//In this case there is no parameter and expression body contains one or more statement.
+
+
+
+
+
+==========================================================
+
+
+using normal for each (not the forEach() method) when we iterate over any array of primitive data then through iteration if we make any change it will not reflect in the actual data but if we have an array of object and we are iterating through that array using normal for each, then if we make any change there through the reference then that will be reflected in the actual object.
+
+int arr[] = {2,4,7,8,9};
+
+for(int x : arr)
+{
+	x = 10;
+}
+
+class Demo
+{
+	int a;			//Will not make any change in the actual array contents.
+	int b;
+}
+
+Demo darr[] = {1001,1015,1089,1071,1098};
+
+for(Demo d : darr)
+{
+	d.a = 50;		//Will replace the actual object's refered by d
+	d.b = 100;		//Will replace the actual object's refered by d
+}
+
+
+
+
+
+
+
+
+
+==========================================================
+20-08-2021 current date (Current Date java.util.Date,  convert this to String and split and then save day, month and year )
+23-09-1992 dob	(User input : as String just split and save day, month and year seperately.)
+----------------
+28-10-28
+
+your age is : 28 years 10 months 28 days.
+
+
+=====================================================
+
+Cloning
+---------
+Shallow cloning => Values are copied into cloned object and references of the composed object also.
+Deep cloning => values are copied but composed object also clone is created and then reference of that cloned object is copied.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

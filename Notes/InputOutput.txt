@@ -1,0 +1,65 @@
+File class is used to get the infomation about a file or directory.
+In java, directory is also treated as file so we can say that a file can contain list of files.
+We can not use File object to read or write something to that file.
+
+Creating file object
+============================
+
+File f = new File("myfile.txt");
+
+f.exists();
+f.getName();
+
+f.isDirectory();
+f.isFile();
+
+if(f.isDirectory())
+{
+	String fnames[] = f.list();
+}
+
+=======================================================
+
+ByteStream   <=====> CharStream
+FileInputStream <=====> FileReader
+FileOutputStream <=====> FileWriter
+
+BufferedInputStream <======> BufferedReader
+BufferedOutputStream <=====> BufferedWriter
+
+=======================================================
+
+System.in => keyboard
+System.out => monitor
+System.err => monitor
+
+=======================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

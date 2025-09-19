@@ -1,0 +1,45 @@
+Lambda expression provides implementation of functional interface. An interface which has only one abstract method is called functional interface. 
+
+Syntax:
+parameter -> expression body
+OR;
+(parameter list) -> {expression body}
+
+Example:
+
+import java.util.*;
+interface Increment
+{
+	int incrementBy(int num, int incByVal);
+}
+
+class LambdaExpDemo1
+{
+	public static void main(String args[])
+	{
+		Increment inc1 = (n,iv)-> n+iv;
+		int res = inc1.incrementBy(25,4);	//Lambda variable as an object
+		System.out.println("res = "+res);
+
+
+		//Lambda used with for each.
+		ArrayList <Integer> arrList = new ArrayList<>();
+		arrList.add(5);
+		arrList.add(10);
+		arrList.add(15);
+		arrList.add(20);
+		arrList.add(25);
+
+
+		arrList.forEach (i -> {System.out.println("List : "+i);}); //Lambda expression to iterate through collection
+
+
+	}
+}
+
+
+
+
+
+
+
